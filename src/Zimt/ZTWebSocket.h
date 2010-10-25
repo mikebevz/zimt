@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AsyncSocket;
+@class ZimtAsyncSocket;
 @class ZTWebSocket;
 
 @protocol ZTWebSocketDelegate<NSObject>
@@ -23,7 +23,7 @@
 @interface ZTWebSocket : NSObject {
     id<ZTWebSocketDelegate> delegate;
     NSURL* url;
-    AsyncSocket* socket;
+    ZimtAsyncSocket* socket;
     BOOL connected;
     NSString* origin;
     

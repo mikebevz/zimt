@@ -8,7 +8,7 @@
 
 #import "ZTLog.h"
 #import "ZTWebSocket.h"
-#import "AsyncSocket.h"
+#import "ZimtAsyncSocket.h"
 
 
 NSString* const ZTWebSocketErrorDomain = @"ZTWebSocketErrorDomain";
@@ -36,7 +36,7 @@ enum {
         if (![url.scheme isEqualToString:@"ws"]) {
             [NSException raise:ZTWebSocketException format:@"Unsupported protocol %@", url.scheme];
         }
-        socket = [[AsyncSocket alloc] initWithDelegate:self];
+        socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
         self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil]; 
     }
     return self;
@@ -101,13 +101,13 @@ enum {
     [socket writeData:data withTimeout:-1 tag:ZTWebSocketTagMessage];
 }
 
-#pragma mark AsyncSocket delegate methods
+#pragma mark ZimtAsyncSocket delegate methods
 
--(void)onSocketDidDisconnect:(AsyncSocket *)sock {
+-(void)onSocketDidDisconnect:(ZimtAsyncSocket *)sock {
     connected = NO;
 }
 
--(void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
+-(void)onSocket:(ZimtAsyncSocket *)sock willDisconnectWithError:(NSError *)err {
     if (!connected) {
         [self _dispatchFailure:[NSNumber numberWithInt:ZTWebSocketErrorConnectionFailed]];
     } else {
@@ -115,7 +115,7 @@ enum {
     }
 }
 
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
+- (void)onSocket:(ZimtAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
     NSString* requestOrigin = self.origin;
     if (!requestOrigin) requestOrigin = [NSString stringWithFormat:@"http://%@",url.host];
         
@@ -133,7 +133,7 @@ enum {
     [socket writeData:[getRequest dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:ZTWebSocketTagHandshake];
 }
 
--(void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+-(void)onSocket:(ZimtAsyncSocket *)sock didWriteDataWithTag:(long)tag {
     if (tag == ZTWebSocketTagHandshake) {
         [sock readDataToData:[@"\r\n\r\n" dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:ZTWebSocketTagHandshake];
     } else if (tag == ZTWebSocketTagMessage) {
@@ -141,7 +141,7 @@ enum {
     }
 }
 
--(void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+-(void)onSocket:(ZimtAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     if (tag == ZTWebSocketTagHandshake) {
         NSString* response = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
         if ([response hasPrefix:@"HTTP/1.1 101 Web Socket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
