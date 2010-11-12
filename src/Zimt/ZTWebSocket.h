@@ -29,7 +29,7 @@
     
     NSArray* runLoopModes;
     NSString* cookie;
-@private
+
     u_char key3[8];
     NSData* expectedChallenge;
     BOOL handShakeHeaderReceived;
