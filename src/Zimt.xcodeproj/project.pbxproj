@@ -11,8 +11,6 @@
 		0EAFE8021275C96800119F63 /* ZimtAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */; };
 		0EAFE80B1275C9EB00119F63 /* ZimtAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */; };
 		0EAFE80C1275C9EB00119F63 /* ZimtAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */; };
-		45D498F3128DF4A600678AC5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D498F2128DF4A600678AC5 /* libcrypto.a */; };
-		45F1DE05128DF036002E74CD /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F1DE04128DF036002E74CD /* libssl.a */; };
 		AA747D9F0F9514B9006C5449 /* Zimt_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C779972C112758C500B197AE /* CoreLocation.framework */; };
@@ -30,8 +28,6 @@
 		0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncSocket.m; path = Vendor/AsyncSocket/ZimtAsyncSocket.m; sourceTree = "<group>"; };
 		0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZimtAsyncUdpSocket.h; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.h; sourceTree = "<group>"; };
 		0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncUdpSocket.m; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.m; sourceTree = "<group>"; };
-		45D498F2128DF4A600678AC5 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		45F1DE04128DF036002E74CD /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zimt_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C779972C112758C500B197AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -53,8 +49,6 @@
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 				C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */,
 				C7799AC41128F28100B197AE /* CFNetwork.framework in Frameworks */,
-				45F1DE05128DF036002E74CD /* libssl.a in Frameworks */,
-				45D498F3128DF4A600678AC5 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,8 +80,6 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				45D498F2128DF4A600678AC5 /* libcrypto.a */,
-				45F1DE04128DF036002E74CD /* libssl.a */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 				C779972C112758C500B197AE /* CoreLocation.framework */,
 				C7799A1F1128F03600B197AE /* CFNetwork.framework */,
@@ -226,7 +218,7 @@
 		1DEB921F08733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/Zimt.dst;
@@ -242,14 +234,14 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Zimt;
-				USER_HEADER_SEARCH_PATHS = "include/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		1DEB922008733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/Zimt.dst;
 				GCC_MODEL_TUNING = G5;
@@ -261,7 +253,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Zimt;
-				USER_HEADER_SEARCH_PATHS = "include/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

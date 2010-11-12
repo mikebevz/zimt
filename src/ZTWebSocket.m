@@ -9,7 +9,7 @@
 #import "ZTLog.h"
 #import "ZTWebSocket.h"
 #import "ZimtAsyncSocket.h"
-#import <openssl/evp.h>
+#import <CommonCrypto/CommonDigest.h>
 
 NSString* const ZTWebSocketErrorDomain = @"ZTWebSocketErrorDomain";
 NSString* const ZTWebSocketException = @"ZTWebSocketException";
@@ -269,23 +269,16 @@ static void _setChallengeNumber(unsigned char* buf, uint32_t number) {
 }
 
 static NSData* _generateExpectedChallengeResponse(uint32_t number1, uint32_t number2, u_char key3[8]) {
-    u_char theExpectedChallenge[16];
+    u_char theExpectedChallenge[CC_MD5_DIGEST_LENGTH];
     u_char challenge[16];
-    u_int theExpectedChallengeLen;
     _setChallengeNumber(&challenge[0], number1);
     _setChallengeNumber(&challenge[4], number2);
     memcpy(&challenge[8], key3, 8);
     
-    EVP_MD_CTX      ctx;
+    // Calculate MD5 hash from challenge data
+    CC_MD5(challenge, 16, theExpectedChallenge);
     
-    EVP_MD_CTX_init(&ctx);
-    EVP_DigestInit_ex(&ctx, EVP_md5(), NULL);
-    EVP_DigestUpdate(&ctx, challenge, 16);
-    EVP_DigestFinal_ex(&ctx, theExpectedChallenge, &theExpectedChallengeLen);
-    
-    EVP_MD_CTX_cleanup(&ctx);
-    
-    NSData *expectedChallengeData = [[NSData alloc] initWithBytes:theExpectedChallenge length:theExpectedChallengeLen];
+    NSData *expectedChallengeData = [[NSData alloc] initWithBytes:theExpectedChallenge length:CC_MD5_DIGEST_LENGTH];
     return [expectedChallengeData autorelease];
 }
 
