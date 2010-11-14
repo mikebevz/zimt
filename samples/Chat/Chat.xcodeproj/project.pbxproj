@@ -273,6 +273,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
+
 				USER_HEADER_SEARCH_PATHS = "../../src/**";
 			};
 			name = Debug;

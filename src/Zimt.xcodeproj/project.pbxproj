@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EAFE8011275C96800119F63 /* ZimtAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */; };
+		0EAFE8021275C96800119F63 /* ZimtAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */; };
+		0EAFE80B1275C9EB00119F63 /* ZimtAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */; };
+		0EAFE80C1275C9EB00119F63 /* ZimtAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */; };
 		AA747D9F0F9514B9006C5449 /* Zimt_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C779972C112758C500B197AE /* CoreLocation.framework */; };
@@ -17,12 +21,13 @@
 		C7BF061211273DE3000F2DF4 /* Zimt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BF061011273DE3000F2DF4 /* Zimt.h */; };
 		C7BF06A011274609000F2DF4 /* ZTFakeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF069E11274609000F2DF4 /* ZTFakeLocationManager.m */; };
 		C7BF0822112750B1000F2DF4 /* ZTFakeLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BF0821112750B1000F2DF4 /* ZTFakeLocationManager.h */; };
-		C7CBF677113E9CDE00546ABF /* AsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = C7CBF676113E9CDE00546ABF /* AsyncSocket.h */; };
-		C7CBF6BE113E9D2E00546ABF /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */; };
-		C7CBF6BF113E9D2E00546ABF /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZimtAsyncSocket.h; path = Vendor/AsyncSocket/ZimtAsyncSocket.h; sourceTree = "<group>"; };
+		0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncSocket.m; path = Vendor/AsyncSocket/ZimtAsyncSocket.m; sourceTree = "<group>"; };
+		0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZimtAsyncUdpSocket.h; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.h; sourceTree = "<group>"; };
+		0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncUdpSocket.m; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zimt_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C779972C112758C500B197AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -33,9 +38,6 @@
 		C7BF061011273DE3000F2DF4 /* Zimt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zimt.h; path = Zimt/Zimt.h; sourceTree = "<group>"; };
 		C7BF069E11274609000F2DF4 /* ZTFakeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTFakeLocationManager.m; sourceTree = "<group>"; };
 		C7BF0821112750B1000F2DF4 /* ZTFakeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTFakeLocationManager.h; path = Zimt/ZTFakeLocationManager.h; sourceTree = "<group>"; };
-		C7CBF676113E9CDE00546ABF /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = vendor/AsyncSocket/AsyncSocket.h; sourceTree = "<group>"; };
-		C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = vendor/AsyncSocket/AsyncSocket.m; sourceTree = SOURCE_ROOT; };
-		C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = vendor/AsyncSocket/AsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
 		D2AAC07E0554694100DB518D /* libZimt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZimt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -131,9 +133,10 @@
 		C7CBF6B9113E9D1E00546ABF /* AsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
-				C7CBF676113E9CDE00546ABF /* AsyncSocket.h */,
-				C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */,
-				C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */,
+				0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */,
+				0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */,
+				0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */,
+				0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */,
 			);
 			name = AsyncSocket;
 			sourceTree = "<group>";
@@ -150,7 +153,8 @@
 				C7BF061211273DE3000F2DF4 /* Zimt.h in Headers */,
 				C7BF0822112750B1000F2DF4 /* ZTFakeLocationManager.h in Headers */,
 				C77999CB1128EE0200B197AE /* ZTWebSocket.h in Headers */,
-				C7CBF677113E9CDE00546ABF /* AsyncSocket.h in Headers */,
+				0EAFE8011275C96800119F63 /* ZimtAsyncSocket.h in Headers */,
+				0EAFE80B1275C9EB00119F63 /* ZimtAsyncUdpSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,8 +210,8 @@
 			files = (
 				C7BF06A011274609000F2DF4 /* ZTFakeLocationManager.m in Sources */,
 				C779986F112768BA00B197AE /* ZTWebSocket.m in Sources */,
-				C7CBF6BE113E9D2E00546ABF /* AsyncSocket.m in Sources */,
-				C7CBF6BF113E9D2E00546ABF /* AsyncUdpSocket.m in Sources */,
+				0EAFE8021275C96800119F63 /* ZimtAsyncSocket.m in Sources */,
+				0EAFE80C1275C9EB00119F63 /* ZimtAsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +232,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Zimt_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Zimt;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -242,7 +251,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Zimt_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Zimt;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -253,6 +267,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -266,6 +281,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
