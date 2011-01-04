@@ -1,29 +1,18 @@
-# Intro
+# Under development
 
-Zimt is a collection of various utilities that should help you with iPhone Objective-C development. Pretty much like Facebook's Three20, but less UI-Oriented
+Zimt is a pair of utility classes including an objective-c websocket implementation. I'm in the process of wrapping it in a set of tests and testing ZTWebSocket against the [draft-hixie-thewebsocketprotocol-76][1] and [draft-abarth-websocket-handshake-01][2] drafts for the websocket protocol. 
 
-# Adding Zimt to your project
+[1]: http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76
+[2]: http://tools.ietf.org/html/draft-abarth-websocket-handshake-01
 
-1. Drag and drop Zimt.xcodeproj to your project's "Groups & Files" sidebar. Make sure "Copy items" is unchecked and "Reference Type" is set to "Relative to Project"
+# Testing
 
-2. From newly added Zimt.xcodeproj, drag and drop libZimt.a to "Targets" > Your application target > "Link binaries with Library"
+1. Clone this repository
+2. Checkout the Expectacular submodule (from [https://github.com/eahanson/Expectacular][3])
 
-3. Under "Targets", right click your Application target, choose "Get Info" and under "General" tab add direct dependency to "Zimt"
+	`git submodule init; git submodule update`
+	
+3. Run the `Unit Tests` build targets. [GTM][4] unit test output will appear in the build results as part of the build process.
 
-5. Include Zimt headers in your project: Under "Project" > "Edit Project Settings", go to "Build" tab. Search for "Header Search Paths" and double-click
-   it. Add the relative path from your project's directory to the "zimt/src" directory
-
-6. Setup the debug macro: in "Projects" > "Edit Project Settings", under "Build tab", choose "Debug Configuration". Search for "Preprocessor macros", add DEBUG=1
-
-7. If you're using ZTWebSocket, you need to add the CFNetwork to your project.  Right click on the "Frameworks" group in your project (or equivalent) and 
-   select "Add" > "Existing Frameworks". Locate CFNetwork.framework and add it to the project.
-
-# What's inside
-
-## ZTFakeLocationManager
-
-CLLocationManager subclass that can read a list of waypoints from a file and simulate location updates. Meant to be used on simulator for testing. See samples/FakeLocation
-
-## ZTWebSocket
-
-Objective-C websocket implementation (based on AsyncSocket)
+[3]: https://github.com/eahanson/Expectacular
+[4]: http://code.google.com/p/google-toolbox-for-mac/wiki/iPhoneUnitTesting
