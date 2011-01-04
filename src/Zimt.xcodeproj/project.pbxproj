@@ -17,7 +17,8 @@
 		8C2475EA12D315C100576432 /* GTMRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475C912D314EF00576432 /* GTMRegex.m */; };
 		8C2475EB12D315C300576432 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475D012D314EF00576432 /* GTMSenTestCase.m */; };
 		8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */; };
-		8C2475F312D316D200576432 /* WebSocketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C779986D112768BA00B197AE /* WebSocketTest.m */; };
+		8C24760B12D3186C00576432 /* Expect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760812D3186C00576432 /* Expect.m */; };
+		8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760A12D3186C00576432 /* ExpectacularFailure.m */; };
 		AA747D9F0F9514B9006C5449 /* Zimt_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C779972C112758C500B197AE /* CoreLocation.framework */; };
@@ -48,10 +49,13 @@
 		8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMUnitTestDevLog.m; sourceTree = "<group>"; };
 		8C2475D712D3155C00576432 /* Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2475D912D3155C00576432 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		8C24760712D3186C00576432 /* Expect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expect.h; sourceTree = "<group>"; };
+		8C24760812D3186C00576432 /* Expect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Expect.m; sourceTree = "<group>"; };
+		8C24760912D3186C00576432 /* ExpectacularFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectacularFailure.h; sourceTree = "<group>"; };
+		8C24760A12D3186C00576432 /* ExpectacularFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpectacularFailure.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zimt_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C779972C112758C500B197AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C779986D112768BA00B197AE /* WebSocketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSocketTest.m; path = Test/WebSocketTest.m; sourceTree = "<group>"; };
 		C77999CA1128EE0200B197AE /* ZTWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTWebSocket.h; path = Zimt/ZTWebSocket.h; sourceTree = "<group>"; };
 		C7799A1F1128F03600B197AE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C7BF060F11273DE3000F2DF4 /* ZTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTLog.h; path = Zimt/ZTLog.h; sourceTree = "<group>"; };
@@ -177,11 +181,30 @@
 			path = UnitTesting;
 			sourceTree = "<group>";
 		};
+		8C24760512D3185400576432 /* Expectacular */ = {
+			isa = PBXGroup;
+			children = (
+				8C24760612D3186C00576432 /* Classes */,
+			);
+			name = Expectacular;
+			path = Vendor/Expectacular;
+			sourceTree = "<group>";
+		};
+		8C24760612D3186C00576432 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8C24760712D3186C00576432 /* Expect.h */,
+				8C24760812D3186C00576432 /* Expect.m */,
+				8C24760912D3186C00576432 /* ExpectacularFailure.h */,
+				8C24760A12D3186C00576432 /* ExpectacularFailure.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		C779986B112768AC00B197AE /* Web Socket */ = {
 			isa = PBXGroup;
 			children = (
 				C77999CA1128EE0200B197AE /* ZTWebSocket.h */,
-				C779986D112768BA00B197AE /* WebSocketTest.m */,
 			);
 			name = "Web Socket";
 			sourceTree = "<group>";
@@ -198,6 +221,7 @@
 		C7CBF6B8113E9D1900546ABF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8C24760512D3185400576432 /* Expectacular */,
 				8C2475C412D314EF00576432 /* google-toolbox-for-mac */,
 				C7CBF6B9113E9D1E00546ABF /* AsyncSocket */,
 			);
@@ -333,7 +357,8 @@
 				8C2475EA12D315C100576432 /* GTMRegex.m in Sources */,
 				8C2475EB12D315C300576432 /* GTMSenTestCase.m in Sources */,
 				8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */,
-				8C2475F312D316D200576432 /* WebSocketTest.m in Sources */,
+				8C24760B12D3186C00576432 /* Expect.m in Sources */,
+				8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

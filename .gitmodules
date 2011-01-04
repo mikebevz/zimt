@@ -1,0 +1,3 @@
+[submodule "src/Vendor/Expectacular"]
+	path = src/Vendor/Expectacular
+	url = https://github.com/eahanson/Expectacular.git
