@@ -19,6 +19,7 @@
 		8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */; };
 		8C24760B12D3186C00576432 /* Expect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760812D3186C00576432 /* Expect.m */; };
 		8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760A12D3186C00576432 /* ExpectacularFailure.m */; };
+		8C24761012D319C800576432 /* WebSocketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760F12D319C800576432 /* WebSocketTest.m */; };
 		AA747D9F0F9514B9006C5449 /* Zimt_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C779972C112758C500B197AE /* CoreLocation.framework */; };
@@ -53,6 +54,7 @@
 		8C24760812D3186C00576432 /* Expect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Expect.m; sourceTree = "<group>"; };
 		8C24760912D3186C00576432 /* ExpectacularFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectacularFailure.h; sourceTree = "<group>"; };
 		8C24760A12D3186C00576432 /* ExpectacularFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpectacularFailure.m; sourceTree = "<group>"; };
+		8C24760F12D319C800576432 /* WebSocketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketTest.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zimt_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C779972C112758C500B197AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -141,6 +143,7 @@
 		8C2475BB12D3130F00576432 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				8C24760F12D319C800576432 /* WebSocketTest.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */,
 				8C24760B12D3186C00576432 /* Expect.m in Sources */,
 				8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */,
+				8C24761012D319C800576432 /* WebSocketTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
