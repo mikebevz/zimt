@@ -16,7 +16,8 @@ NSString* const ZTWebSocketException = @"ZTWebSocketException";
 
 enum {
     ZTWebSocketTagHandshake = 0,
-    ZTWebSocketTagMessage = 1
+    ZTWebSocketTagMessage = 1,
+    ZTWebSocketTagChallenge = 2
 };
 
 // Private methods & properties
@@ -52,6 +53,7 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
         }
         socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
         self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil];
+        self.origin = @"http://localhost";
     }
     return self;
 }
@@ -92,6 +94,10 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
 
 -(void)_readNextMessage {
     [socket readDataToData:[NSData dataWithBytes:"\xFF" length:1] withTimeout:-1 tag:ZTWebSocketTagMessage];
+}
+
+-(void)_readChallenge:(CFIndex)length {
+    [socket readDataToLength:length withTimeout:-1 tag:ZTWebSocketTagChallenge];
 }
 
 #pragma mark Public interface
@@ -190,12 +196,19 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
     if (tag == ZTWebSocketTagHandshake) {
         NSString* response = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
         
-        if ([response hasPrefix:@"HTTP/1.1 101 WebSocket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
-            [self setHandShakeHeaderReceived:YES];
-            [self _readNextMessage];
+        if ([response hasPrefix:@"HTTP/1.1 101 Web Socket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
+            [self _readChallenge:[expectedChallenge length]];
         } else {
             [self _dispatchFailure:[NSNumber numberWithInt:ZTWebSocketErrorHandshakeFailed]];
         }
+    } else if (tag == ZTWebSocketTagChallenge) {
+        if ([expectedChallenge isEqualToData:data]) { // got our challenge!
+                connected = YES;
+                [self _dispatchOpened];
+            } else {
+                [self _dispatchFailure:[NSNumber numberWithInt:ZTWebSocketErrorHandshakeFailed]];
+            }
+        [self _readNextMessage];
     } else if (tag == ZTWebSocketTagMessage) {
         char firstByte = 0xFF;
         [data getBytes:&firstByte length:1];

@@ -32,7 +32,6 @@
 
     u_char key3[8];
     NSData* expectedChallenge;
-    BOOL handShakeHeaderReceived;
 }
 
 @property(nonatomic,assign) id<ZTWebSocketDelegate> delegate;

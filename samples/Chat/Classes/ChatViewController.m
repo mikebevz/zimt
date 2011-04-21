@@ -19,7 +19,7 @@
 }
 
 -(void)viewDidLoad {
-    webSocket = [[ZTWebSocket alloc] initWithURLString:@"ws://10.0.1.21:12345/" delegate:self];
+    webSocket = [[ZTWebSocket alloc] initWithURLString:@"ws://10.0.2.46:80/control" delegate:self];
     [webSocket open];	
     [textField becomeFirstResponder];
 }
