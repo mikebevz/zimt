@@ -46,7 +46,7 @@
 
 -(void)webSocketDidOpen:(ZTWebSocket *)aWebSocket {
     [self write:@"Connected"];
-    reconnectButton.hidden = YES;
+    reconnectButton.hidden = NO;
 }
 
 -(void)webSocketDidSendMessage:(ZTWebSocket *)webSocket {
@@ -71,6 +71,10 @@
 -(IBAction)reconnect:(id)sender {
     if (!webSocket.connected) {
         [webSocket open];
+    }
+    else
+    {
+        [webSocket close];
     }
 }
 

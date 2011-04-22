@@ -103,7 +103,7 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
 #pragma mark Public interface
 
 -(void)close {
-    [socket disconnectAfterReadingAndWriting];
+    [socket disconnect];
 }
 
 -(void)open {
@@ -125,6 +125,7 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
 
 -(void)onSocketDidDisconnect:(ZimtAsyncSocket *)sock {
     connected = NO;
+    [self _dispatchClosed];
 }
 
 -(void)onSocket:(ZimtAsyncSocket *)sock willDisconnectWithError:(NSError *)err {
