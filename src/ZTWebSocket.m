@@ -108,7 +108,11 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
 
 -(void)open {
     if (!connected) {
-        [socket connectToHost:url.host onPort:[url.port intValue] withTimeout:5 error:nil];
+        int port = [url.port intValue];
+        if (port == 0) {
+            port = 80;
+        }
+        [socket connectToHost:url.host onPort:port withTimeout:5 error:nil];
         if (runLoopModes) [socket setRunLoopModes:runLoopModes];
     }
 }
