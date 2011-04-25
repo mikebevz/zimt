@@ -51,10 +51,27 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
         if (![url.scheme hasPrefix:@"ws"]) {
             [NSException raise:ZTWebSocketException format:@"Unsupported protocol %@", url.scheme];
         }
-        socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
+        
+        if (useVoIP)
+        {
+            socket = [[ZimtAsyncSocket alloc] initAsVoIPWithDelegate:self];
+        }
+        else
+        {
+            socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
+        }
         self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil];
         self.origin = @"http://localhost";
     }
+    return self;
+}
+
+- (id)initVoIPWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)aDelegate
+{
+    useVoIP = YES;
+    
+    [self initWithURLString:urlString delegate:aDelegate];
+    
     return self;
 }
 
