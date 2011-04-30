@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AsyncSocket;
+@class ZimtAsyncSocket;
 @class ZTWebSocket;
 
 @protocol ZTWebSocketDelegate<NSObject>
@@ -23,11 +23,16 @@
 @interface ZTWebSocket : NSObject {
     id<ZTWebSocketDelegate> delegate;
     NSURL* url;
-    AsyncSocket* socket;
+    ZimtAsyncSocket* socket;
     BOOL connected;
     NSString* origin;
     
     NSArray* runLoopModes;
+    NSString* cookie;
+
+    u_char key3[8];
+    NSData* expectedChallenge;
+    BOOL handShakeHeaderReceived;
 }
 
 @property(nonatomic,assign) id<ZTWebSocketDelegate> delegate;
@@ -35,6 +40,7 @@
 @property(nonatomic,retain) NSString* origin;
 @property(nonatomic,readonly) BOOL connected;
 @property(nonatomic,retain) NSArray* runLoopModes;
+@property(nonatomic,retain) NSString* cookie;
 
 + (id)webSocketWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)delegate;
 - (id)initWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)delegate;

@@ -1,5 +1,5 @@
 //
-//  AsyncUdpSocket.m
+//  ZimtAsyncUdpSocket.m
 //  
 //  This class is in the public domain.
 //  Originally created by Robbie Hanson on Wed Oct 01 2008.
@@ -8,7 +8,7 @@
 //  http://code.google.com/p/cocoaasyncsocket/
 //
 
-#import "AsyncUdpSocket.h"
+#import "ZimtAsyncUdpSocket.h"
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
@@ -27,16 +27,16 @@
 
 #define DEFAULT_MAX_RECEIVE_BUFFER_SIZE 9216
 
-NSString *const AsyncUdpSocketException = @"AsyncUdpSocketException";
-NSString *const AsyncUdpSocketErrorDomain = @"AsyncUdpSocketErrorDomain";
+NSString *const ZimtAsyncUdpSocketException = @"ZimtAsyncUdpSocketException";
+NSString *const ZimtAsyncUdpSocketErrorDomain = @"ZimtAsyncUdpSocketErrorDomain";
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
-// Mutex lock used by all instances of AsyncUdpSocket, to protect getaddrinfo.
+// Mutex lock used by all instances of ZimtAsyncUdpSocket, to protect getaddrinfo.
 // Prior to Mac OS X 10.5 this method was not thread-safe.
 static NSString *getaddrinfoLock = @"lock";
 #endif
 
-enum AsyncUdpSocketFlags
+enum ZimtAsyncUdpSocketFlags
 {
 	kDidBind                 = 1 <<  0,  // If set, bind has been called.
 	kDidConnect              = 1 <<  1,  // If set, connect has been called.
@@ -53,7 +53,7 @@ enum AsyncUdpSocketFlags
 	kFlipFlop                = 1 << 12,  // Used to alternate between IPv4 and IPv6 sockets.
 };
 
-@interface AsyncUdpSocket (Private)
+@interface ZimtAsyncUdpSocket (Private)
 
 // Run Loop
 - (void)runLoopAddSource:(CFRunLoopSourceRef)source;
@@ -117,9 +117,9 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * The AsyncSendPacket encompasses the instructions for a single send/write.
+ * The ZimtAsyncSendPacket encompasses the instructions for a single send/write.
 **/
-@interface AsyncSendPacket : NSObject
+@interface ZimtAsyncSendPacket : NSObject
 {
 @public
 	NSData *buffer;
@@ -130,7 +130,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (id)initWithData:(NSData *)d address:(NSData *)a timeout:(NSTimeInterval)t tag:(long)i;
 @end
 
-@implementation AsyncSendPacket
+@implementation ZimtAsyncSendPacket
 
 - (id)initWithData:(NSData *)d address:(NSData *)a timeout:(NSTimeInterval)t tag:(long)i
 {
@@ -158,9 +158,9 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * The AsyncReceivePacket encompasses the instructions for a single receive/read.
+ * The ZimtAsyncReceivePacket encompasses the instructions for a single receive/read.
 **/
-@interface AsyncReceivePacket : NSObject
+@interface ZimtAsyncReceivePacket : NSObject
 {
 @public
 	NSTimeInterval timeout;
@@ -172,7 +172,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (id)initWithTimeout:(NSTimeInterval)t tag:(long)i;
 @end
 
-@implementation AsyncReceivePacket
+@implementation ZimtAsyncReceivePacket
 
 - (id)initWithTimeout:(NSTimeInterval)t tag:(long)i
 {
@@ -201,7 +201,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation AsyncUdpSocket
+@implementation ZimtAsyncUdpSocket
 
 - (id)initWithDelegate:(id)delegate userData:(long)userData enableIPv4:(BOOL)enableIPv4 enableIPv6:(BOOL)enableIPv6
 {
@@ -775,17 +775,17 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 {
 	if(theFlags & kDidClose)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"The socket is closed."];
 	}
 	if(theFlags & kDidBind)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Cannot bind a socket more than once."];
 	}
 	if(theFlags & kDidConnect)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Cannot bind after connecting. If needed, bind first, then connect."];
 	}
 	
@@ -881,12 +881,12 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 {
 	if(theFlags & kDidClose)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"The socket is closed."];
 	}
 	if(theFlags & kDidConnect)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Cannot connect a socket more than once."];
 	}
 	
@@ -981,12 +981,12 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 {
 	if(theFlags & kDidClose)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"The socket is closed."];
 	}
 	if(theFlags & kDidConnect)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Cannot connect a socket more than once."];
 	}
 	
@@ -1046,8 +1046,8 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		NSString *errMsg = @"remoteAddr parameter is not a valid address";
 		NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 		
-		*errPtr = [NSError errorWithDomain:AsyncUdpSocketErrorDomain
-									  code:AsyncUdpSocketBadParameter
+		*errPtr = [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain
+									  code:ZimtAsyncUdpSocketBadParameter
 								  userInfo:info];
 	}
 	return NO;
@@ -1068,17 +1068,17 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 {
 	if(theFlags & kDidClose)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"The socket is closed."];
 	}
 	if(!(theFlags & kDidBind))
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Must bind a socket before joining a multicast group."];
 	}
 	if(theFlags & kDidConnect)
 	{
-		[NSException raise:AsyncUdpSocketException
+		[NSException raise:ZimtAsyncUdpSocketException
 		            format:@"Cannot join a multicast group if connected."];
 	}
 	
@@ -1187,8 +1187,8 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		NSString *errMsg = @"Invalid group and/or address, not matching existing socket(s)";
 		NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 		
-		*errPtr = [NSError errorWithDomain:AsyncUdpSocketErrorDomain
-		                              code:AsyncUdpSocketBadParameter
+		*errPtr = [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain
+		                              code:ZimtAsyncUdpSocketBadParameter
 		                          userInfo:info];
 	}
 	return NO;
@@ -1384,7 +1384,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	NSString *errMsg = @"General CFSocket error";
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
-	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketCFSocketError userInfo:info];
+	return [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain code:ZimtAsyncUdpSocketCFSocketError userInfo:info];
 }
 
 - (NSError *)getIPv4UnavailableError
@@ -1392,7 +1392,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	NSString *errMsg = @"IPv4 is unavailable due to binding/connecting using IPv6 only";
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
-	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketIPv4Unavailable userInfo:info];
+	return [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain code:ZimtAsyncUdpSocketIPv4Unavailable userInfo:info];
 }
 
 - (NSError *)getIPv6UnavailableError
@@ -1400,7 +1400,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	NSString *errMsg = @"IPv6 is unavailable due to binding/connecting using IPv4 only or is not supported on this platform";
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
-	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketIPv6Unavailable userInfo:info];
+	return [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain code:ZimtAsyncUdpSocketIPv6Unavailable userInfo:info];
 }
 
 - (NSError *)getSendTimeoutError
@@ -1408,14 +1408,14 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	NSString *errMsg = @"Send operation timed out";
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
-	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketSendTimeoutError userInfo:info];
+	return [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain code:ZimtAsyncUdpSocketSendTimeoutError userInfo:info];
 }
 - (NSError *)getReceiveTimeoutError
 {
 	NSString *errMsg = @"Receive operation timed out";
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
-	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketReceiveTimeoutError userInfo:info];
+	return [NSError errorWithDomain:ZimtAsyncUdpSocketErrorDomain code:ZimtAsyncUdpSocketReceiveTimeoutError userInfo:info];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1701,7 +1701,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	// This method is only for connected sockets
 	if(![self isConnected]) return NO;
 	
-	AsyncSendPacket *packet = [[AsyncSendPacket alloc] initWithData:data address:nil timeout:timeout tag:tag];
+	ZimtAsyncSendPacket *packet = [[ZimtAsyncSendPacket alloc] initWithData:data address:nil timeout:timeout tag:tag];
 	
 	[theSendQueue addObject:packet];
 	[self scheduleDequeueSend];
@@ -1722,12 +1722,12 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	NSData *address4 = nil, *address6 = nil;
 	[self convertForSendHost:host port:port intoAddress4:&address4 address6:&address6];
 	
-	AsyncSendPacket *packet = nil;
+	ZimtAsyncSendPacket *packet = nil;
 	
 	if(address4 && theSocket4)
-		packet = [[AsyncSendPacket alloc] initWithData:data address:address4 timeout:timeout tag:tag];
+		packet = [[ZimtAsyncSendPacket alloc] initWithData:data address:address4 timeout:timeout tag:tag];
 	else if(address6 && theSocket6)
-		packet = [[AsyncSendPacket alloc] initWithData:data address:address6 timeout:timeout tag:tag];
+		packet = [[ZimtAsyncSendPacket alloc] initWithData:data address:address6 timeout:timeout tag:tag];
 	else
 		return NO;
 	
@@ -1753,7 +1753,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	if([remoteAddr length] == sizeof(struct sockaddr_in6) && !theSocket6)
 		return NO;
 	
-	AsyncSendPacket *packet = [[AsyncSendPacket alloc] initWithData:data address:remoteAddr timeout:timeout tag:tag];
+	ZimtAsyncSendPacket *packet = [[ZimtAsyncSendPacket alloc] initWithData:data address:remoteAddr timeout:timeout tag:tag];
 	
 	[theSendQueue addObject:packet];
 	[self scheduleDequeueSend];
@@ -1792,7 +1792,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	return select(FD_SETSIZE, NULL, &fds, NULL, &timeout) > 0;
 }
 
-- (CFSocketRef)socketForPacket:(AsyncSendPacket *)packet
+- (CFSocketRef)socketForPacket:(ZimtAsyncSendPacket *)packet
 {
 	if(!theSocket4)
 		return theSocket6;
@@ -1980,7 +1980,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	if(theFlags & kForbidSendReceive) return;
 	if(theFlags & kDidClose) return;
 	
-	AsyncReceivePacket *packet = [[AsyncReceivePacket alloc] initWithTimeout:timeout tag:tag];
+	ZimtAsyncReceivePacket *packet = [[ZimtAsyncReceivePacket alloc] initWithTimeout:timeout tag:tag];
 	
 	[theReceiveQueue addObject:packet];
 	[self scheduleDequeueReceive];
@@ -2321,7 +2321,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 			[self doSend:sock];
 			break;
 		default:
-			NSLog (@"AsyncUdpSocket %p received unexpected CFSocketCallBackType %d.", self, type);
+			NSLog (@"ZimtAsyncUdpSocket %p received unexpected CFSocketCallBackType %d.", self, type);
 			break;
 	}
 }
@@ -2334,7 +2334,7 @@ static void MyCFSocketCallback(CFSocketRef sref, CFSocketCallBackType type, CFDa
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	AsyncUdpSocket *theSocket = [[(AsyncUdpSocket *)pInfo retain] autorelease];
+	ZimtAsyncUdpSocket *theSocket = [[(ZimtAsyncUdpSocket *)pInfo retain] autorelease];
 	[theSocket doCFSocketCallback:type forSocket:sref withAddress:(NSData *)address withData:pData];
 	
 	[pool release];

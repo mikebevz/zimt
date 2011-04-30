@@ -1,5 +1,5 @@
 //
-//  AsyncSocket.h
+//  ZimtAsyncSocket.h
 //  
 //  This class is in the public domain.
 //  Originally created by Dustin Voss on Wed Jan 29 2003.
@@ -10,26 +10,26 @@
 
 #import <Foundation/Foundation.h>
 
-@class AsyncSocket;
-@class AsyncReadPacket;
-@class AsyncWritePacket;
+@class ZimtAsyncSocket;
+@class ZimtAsyncReadPacket;
+@class ZimtAsyncWritePacket;
 
-extern NSString *const AsyncSocketException;
-extern NSString *const AsyncSocketErrorDomain;
+extern NSString *const ZimtAsyncSocketException;
+extern NSString *const ZimtAsyncSocketErrorDomain;
 
-enum AsyncSocketError
+enum ZimtAsyncSocketError
 {
-	AsyncSocketCFSocketError = kCFSocketError,	// From CFSocketError enum.
-	AsyncSocketNoError = 0,						// Never used.
-	AsyncSocketCanceledError,					// onSocketWillConnect: returned NO.
-	AsyncSocketConnectTimeoutError,
-	AsyncSocketReadMaxedOutError,               // Reached set maxLength without completing
-	AsyncSocketReadTimeoutError,
-	AsyncSocketWriteTimeoutError
+	ZimtAsyncSocketCFSocketError = kCFSocketError,	// From CFSocketError enum.
+	ZimtAsyncSocketNoError = 0,						// Never used.
+	ZimtAsyncSocketCanceledError,					// onSocketWillConnect: returned NO.
+	ZimtAsyncSocketConnectTimeoutError,
+	ZimtAsyncSocketReadMaxedOutError,               // Reached set maxLength without completing
+	ZimtAsyncSocketReadTimeoutError,
+	ZimtAsyncSocketWriteTimeoutError
 };
-typedef enum AsyncSocketError AsyncSocketError;
+typedef enum ZimtAsyncSocketError ZimtAsyncSocketError;
 
-@interface NSObject (AsyncSocketDelegate)
+@interface NSObject (ZimtAsyncSocketDelegate)
 
 /**
  * In the event of an error, the socket is closed.
@@ -37,7 +37,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * When connecting, this delegate method may be called
  * before"onSocket:didAcceptNewSocket:" or "onSocket:didConnectToHost:".
 **/
-- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err;
+- (void)onSocket:(ZimtAsyncSocket *)sock willDisconnectWithError:(NSError *)err;
 
 /**
  * Called when a socket disconnects with or without error.  If you want to release a socket after it disconnects,
@@ -46,23 +46,23 @@ typedef enum AsyncSocketError AsyncSocketError;
  * If you call the disconnect method, and the socket wasn't already disconnected,
  * this delegate method will be called before the disconnect method returns.
 **/
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock;
+- (void)onSocketDidDisconnect:(ZimtAsyncSocket *)sock;
 
 /**
  * Called when a socket accepts a connection.  Another socket is spawned to handle it. The new socket will have
  * the same delegate and will call "onSocket:didConnectToHost:port:".
 **/
-- (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket;
+- (void)onSocket:(ZimtAsyncSocket *)sock didAcceptNewSocket:(ZimtAsyncSocket *)newSocket;
 
 /**
  * Called when a new socket is spawned to handle a connection.  This method should return the run-loop of the
  * thread on which the new socket and its delegate should operate. If omitted, [NSRunLoop currentRunLoop] is used.
 **/
-- (NSRunLoop *)onSocket:(AsyncSocket *)sock wantsRunLoopForNewSocket:(AsyncSocket *)newSocket;
+- (NSRunLoop *)onSocket:(ZimtAsyncSocket *)sock wantsRunLoopForNewSocket:(ZimtAsyncSocket *)newSocket;
 
 /**
  * Called when a socket is about to connect. This method should return YES to continue, or NO to abort.
- * If aborted, will result in AsyncSocketCanceledError.
+ * If aborted, will result in ZimtAsyncSocketCanceledError.
  * 
  * If the connectToHost:onPort:error: method was called, the delegate will be able to access and configure the
  * CFReadStream and CFWriteStream as desired prior to connection.
@@ -71,37 +71,37 @@ typedef enum AsyncSocketError AsyncSocketError;
  * CFSocket and CFSocketNativeHandle (BSD socket) as desired prior to connection. You will be able to access and
  * configure the CFReadStream and CFWriteStream in the onSocket:didConnectToHost:port: method.
 **/
-- (BOOL)onSocketWillConnect:(AsyncSocket *)sock;
+- (BOOL)onSocketWillConnect:(ZimtAsyncSocket *)sock;
 
 /**
  * Called when a socket connects and is ready for reading and writing.
  * The host parameter will be an IP address, not a DNS name.
 **/
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
+- (void)onSocket:(ZimtAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
 
 /**
  * Called when a socket has completed reading the requested data into memory.
  * Not called if there is an error.
 **/
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
+- (void)onSocket:(ZimtAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
 
 /**
  * Called when a socket has read in data, but has not yet completed the read.
  * This would occur if using readToData: or readToLength: methods.
  * It may be used to for things such as updating progress bars.
 **/
-- (void)onSocket:(AsyncSocket *)sock didReadPartialDataOfLength:(CFIndex)partialLength tag:(long)tag;
+- (void)onSocket:(ZimtAsyncSocket *)sock didReadPartialDataOfLength:(CFIndex)partialLength tag:(long)tag;
 
 /**
  * Called when a socket has completed writing the requested data. Not called if there is an error.
 **/
-- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag;
+- (void)onSocket:(ZimtAsyncSocket *)sock didWriteDataWithTag:(long)tag;
 
 /**
  * Called when a socket has written some data, but has not yet completed the entire write.
  * It may be used to for things such as updating progress bars.
 **/
-- (void)onSocket:(AsyncSocket *)sock didWritePartialDataOfLength:(CFIndex)partialLength tag:(long)tag;
+- (void)onSocket:(ZimtAsyncSocket *)sock didWritePartialDataOfLength:(CFIndex)partialLength tag:(long)tag;
 
 /**
  * Called if a read operation has reached its timeout without completing.
@@ -114,7 +114,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * 
  * Note that this method may be called multiple times for a single read if you return positive numbers.
 **/
-- (NSTimeInterval)onSocket:(AsyncSocket *)sock
+- (NSTimeInterval)onSocket:(ZimtAsyncSocket *)sock
   shouldTimeoutReadWithTag:(long)tag
 				   elapsed:(NSTimeInterval)elapsed
 				 bytesDone:(CFIndex)length;
@@ -130,7 +130,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * 
  * Note that this method may be called multiple times for a single write if you return positive numbers.
 **/
-- (NSTimeInterval)onSocket:(AsyncSocket *)sock
+- (NSTimeInterval)onSocket:(ZimtAsyncSocket *)sock
  shouldTimeoutWriteWithTag:(long)tag
 				   elapsed:(NSTimeInterval)elapsed
 				 bytesDone:(CFIndex)length;
@@ -142,7 +142,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * If a SSL/TLS negotiation fails (invalid certificate, etc) then the socket will immediately close,
  * and the onSocket:willDisconnectWithError: delegate method will be called with the specific SSL error code.
 **/
-- (void)onSocketDidSecure:(AsyncSocket *)sock;
+- (void)onSocketDidSecure:(ZimtAsyncSocket *)sock;
 
 @end
 
@@ -150,7 +150,7 @@ typedef enum AsyncSocketError AsyncSocketError;
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface AsyncSocket : NSObject
+@interface ZimtAsyncSocket : NSObject
 {
 	CFSocketRef theSocket4;            // IPv4 accept or connect socket
 	CFSocketRef theSocket6;            // IPv6 accept or connect socket
@@ -166,12 +166,12 @@ typedef enum AsyncSocketError AsyncSocketError;
 	NSTimer *theConnectTimer;
 
 	NSMutableArray *theReadQueue;
-	AsyncReadPacket *theCurrentRead;
+	ZimtAsyncReadPacket *theCurrentRead;
 	NSTimer *theReadTimer;
 	NSMutableData *partialReadBuffer;
 	
 	NSMutableArray *theWriteQueue;
-	AsyncWritePacket *theCurrentWrite;
+	ZimtAsyncWritePacket *theCurrentWrite;
 	NSTimer *theWriteTimer;
 
 	id theDelegate;
@@ -204,12 +204,12 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (CFReadStreamRef)getCFReadStream;
 - (CFWriteStreamRef)getCFWriteStream;
 
-// Once one of the accept or connect methods are called, the AsyncSocket instance is locked in
+// Once one of the accept or connect methods are called, the ZimtAsyncSocket instance is locked in
 // and the other accept/connect methods can't be called without disconnecting the socket first.
 // If the attempt fails or times out, these methods either return NO or
 // call "onSocket:willDisconnectWithError:" and "onSockedDidDisconnect:".
 
-// When an incoming connection is accepted, AsyncSocket invokes several delegate methods.
+// When an incoming connection is accepted, ZimtAsyncSocket invokes several delegate methods.
 // These methods are (in chronological order):
 // 1. onSocket:didAcceptNewSocket:
 // 2. onSocket:wantsRunLoopForNewSocket:
@@ -228,7 +228,7 @@ typedef enum AsyncSocketError AsyncSocketError;
 
 /**
  * Tells the socket to begin listening and accepting connections on the given port.
- * When a connection comes in, the AsyncSocket instance will call the various delegate methods (see above).
+ * When a connection comes in, the ZimtAsyncSocket instance will call the various delegate methods (see above).
  * The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
 **/
 - (BOOL)acceptOnPort:(UInt16)port error:(NSError **)errPtr;
@@ -281,7 +281,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * If the socket is not already disconnected, the onSocketDidDisconnect delegate method
  * will be called immediately, before this method returns.
  * 
- * Please note the recommended way of releasing an AsyncSocket instance (e.g. in a dealloc method)
+ * Please note the recommended way of releasing an ZimtAsyncSocket instance (e.g. in a dealloc method)
  * [asyncSocket setDelegate:nil];
  * [asyncSocket disconnect];
  * [asyncSocket release];
@@ -441,13 +441,13 @@ typedef enum AsyncSocketError AsyncSocketError;
  * If you do not know the peer name of the remote host in advance (for example, you're not sure
  * if it will be "domain.com" or "www.domain.com"), then you can use the default settings to validate the
  * certificate, and then use the X509Certificate class to verify the issuer after the socket has been secured.
- * The X509Certificate class is part of the CocoaAsyncSocket open source project.
+ * The X509Certificate class is part of the CocoaZimtAsyncSocket open source project.
 **/
 - (void)startTLS:(NSDictionary *)tlsSettings;
 
 /**
  * For handling readDataToData requests, data is necessarily read from the socket in small increments.
- * The performance can be much improved by allowing AsyncSocket to read larger chunks at a time and
+ * The performance can be much improved by allowing ZimtAsyncSocket to read larger chunks at a time and
  * store any overflow in a small internal buffer.
  * This is termed pre-buffering, as some data may be read for you before you ask for it.
  * If you use readDataToData a lot, enabling pre-buffering will result in better performance, especially on the iPhone.
@@ -461,7 +461,7 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (void)enablePreBuffering;
 
 /**
- * When you create an AsyncSocket, it is added to the runloop of the current thread.
+ * When you create an ZimtAsyncSocket, it is added to the runloop of the current thread.
  * So for manually created sockets, it is easiest to simply create the socket on the thread you intend to use it.
  * 
  * If a new socket is accepted, the delegate method onSocket:wantsRunLoopForNewSocket: is called to
@@ -491,7 +491,7 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (BOOL)setRunLoopModes:(NSArray *)runLoopModes;
 
 /**
- * Returns the current run loop modes the AsyncSocket instance is operating in.
+ * Returns the current run loop modes the ZimtAsyncSocket instance is operating in.
  * The default set of run loop modes is NSDefaultRunLoopMode.
 **/
 - (NSArray *)runLoopModes;

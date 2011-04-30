@@ -7,39 +7,74 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EAFE8011275C96800119F63 /* ZimtAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */; };
+		0EAFE8021275C96800119F63 /* ZimtAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */; };
+		0EAFE80B1275C9EB00119F63 /* ZimtAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */; };
+		0EAFE80C1275C9EB00119F63 /* ZimtAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */; };
+		8C2475E712D315BF00576432 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475CD12D314EF00576432 /* GTMIPhoneUnitTestDelegate.m */; };
+		8C2475E812D315C000576432 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475CE12D314EF00576432 /* GTMIPhoneUnitTestMain.m */; };
+		8C2475E912D315C000576432 /* GTMObjC2Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475C712D314EF00576432 /* GTMObjC2Runtime.m */; };
+		8C2475EA12D315C100576432 /* GTMRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475C912D314EF00576432 /* GTMRegex.m */; };
+		8C2475EB12D315C300576432 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475D012D314EF00576432 /* GTMSenTestCase.m */; };
+		8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */; };
+		8C24760B12D3186C00576432 /* Expect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760812D3186C00576432 /* Expect.m */; };
+		8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760A12D3186C00576432 /* ExpectacularFailure.m */; };
+		8C24761012D319C800576432 /* WebSocketTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24760F12D319C800576432 /* WebSocketTest.m */; };
 		AA747D9F0F9514B9006C5449 /* Zimt_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		C779972D112758C500B197AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C779972C112758C500B197AE /* CoreLocation.framework */; };
-		C779986F112768BA00B197AE /* ZTWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C779986D112768BA00B197AE /* ZTWebSocket.m */; };
 		C77999CB1128EE0200B197AE /* ZTWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = C77999CA1128EE0200B197AE /* ZTWebSocket.h */; };
 		C7799AC41128F28100B197AE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7799A1F1128F03600B197AE /* CFNetwork.framework */; };
 		C7BF061111273DE3000F2DF4 /* ZTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BF060F11273DE3000F2DF4 /* ZTLog.h */; };
 		C7BF061211273DE3000F2DF4 /* Zimt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BF061011273DE3000F2DF4 /* Zimt.h */; };
 		C7BF06A011274609000F2DF4 /* ZTFakeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF069E11274609000F2DF4 /* ZTFakeLocationManager.m */; };
 		C7BF0822112750B1000F2DF4 /* ZTFakeLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BF0821112750B1000F2DF4 /* ZTFakeLocationManager.h */; };
-		C7CBF677113E9CDE00546ABF /* AsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = C7CBF676113E9CDE00546ABF /* AsyncSocket.h */; };
-		C7CBF6BE113E9D2E00546ABF /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */; };
-		C7CBF6BF113E9D2E00546ABF /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZimtAsyncSocket.h; path = Vendor/AsyncSocket/ZimtAsyncSocket.h; sourceTree = "<group>"; };
+		0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncSocket.m; path = Vendor/AsyncSocket/ZimtAsyncSocket.m; sourceTree = "<group>"; };
+		0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZimtAsyncUdpSocket.h; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.h; sourceTree = "<group>"; };
+		0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZimtAsyncUdpSocket.m; path = Vendor/AsyncSocket/ZimtAsyncUdpSocket.m; sourceTree = "<group>"; };
+		8C2475C612D314EF00576432 /* GTMObjC2Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjC2Runtime.h; sourceTree = "<group>"; };
+		8C2475C712D314EF00576432 /* GTMObjC2Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMObjC2Runtime.m; sourceTree = "<group>"; };
+		8C2475C812D314EF00576432 /* GTMRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMRegex.h; sourceTree = "<group>"; };
+		8C2475C912D314EF00576432 /* GTMRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMRegex.m; sourceTree = "<group>"; };
+		8C2475CA12D314EF00576432 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		8C2475CC12D314EF00576432 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMIPhoneUnitTestDelegate.h; sourceTree = "<group>"; };
+		8C2475CD12D314EF00576432 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMIPhoneUnitTestDelegate.m; sourceTree = "<group>"; };
+		8C2475CE12D314EF00576432 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMIPhoneUnitTestMain.m; sourceTree = "<group>"; };
+		8C2475CF12D314EF00576432 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
+		8C2475D012D314EF00576432 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
+		8C2475D112D314EF00576432 /* GTMUnitTestDevLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMUnitTestDevLog.h; sourceTree = "<group>"; };
+		8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMUnitTestDevLog.m; sourceTree = "<group>"; };
+		8C2475D712D3155C00576432 /* Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2475D912D3155C00576432 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		8C24760712D3186C00576432 /* Expect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expect.h; sourceTree = "<group>"; };
+		8C24760812D3186C00576432 /* Expect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Expect.m; sourceTree = "<group>"; };
+		8C24760912D3186C00576432 /* ExpectacularFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectacularFailure.h; sourceTree = "<group>"; };
+		8C24760A12D3186C00576432 /* ExpectacularFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpectacularFailure.m; sourceTree = "<group>"; };
+		8C24760F12D319C800576432 /* WebSocketTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketTest.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Zimt_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zimt_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C779972C112758C500B197AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C779986D112768BA00B197AE /* ZTWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTWebSocket.m; sourceTree = "<group>"; };
 		C77999CA1128EE0200B197AE /* ZTWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTWebSocket.h; path = Zimt/ZTWebSocket.h; sourceTree = "<group>"; };
 		C7799A1F1128F03600B197AE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C7BF060F11273DE3000F2DF4 /* ZTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTLog.h; path = Zimt/ZTLog.h; sourceTree = "<group>"; };
 		C7BF061011273DE3000F2DF4 /* Zimt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zimt.h; path = Zimt/Zimt.h; sourceTree = "<group>"; };
 		C7BF069E11274609000F2DF4 /* ZTFakeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTFakeLocationManager.m; sourceTree = "<group>"; };
 		C7BF0821112750B1000F2DF4 /* ZTFakeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTFakeLocationManager.h; path = Zimt/ZTFakeLocationManager.h; sourceTree = "<group>"; };
-		C7CBF676113E9CDE00546ABF /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = vendor/AsyncSocket/AsyncSocket.h; sourceTree = "<group>"; };
-		C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = vendor/AsyncSocket/AsyncSocket.m; sourceTree = SOURCE_ROOT; };
-		C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = vendor/AsyncSocket/AsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
 		D2AAC07E0554694100DB518D /* libZimt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZimt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8C2475D512D3155C00576432 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07C0554694100DB518D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libZimt.a */,
+				8C2475D712D3155C00576432 /* Unit Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +100,7 @@
 		0867D691FE84028FC02AAC07 /* Zimt */ = {
 			isa = PBXGroup;
 			children = (
+				8C2475BB12D3130F00576432 /* Test */,
 				C7CBF6B8113E9D1900546ABF /* Vendor */,
 				08FB77AEFE84172EC02AAC07 /* Core */,
 				C7BF069B11274553000F2DF4 /* Fake Location Manager */,
@@ -71,6 +108,7 @@
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				8C2475D912D3155C00576432 /* Unit Tests-Info.plist */,
 			);
 			name = Zimt;
 			sourceTree = "<group>";
@@ -102,11 +140,74 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		8C2475BB12D3130F00576432 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				8C24760F12D319C800576432 /* WebSocketTest.m */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		8C2475C412D314EF00576432 /* google-toolbox-for-mac */ = {
+			isa = PBXGroup;
+			children = (
+				8C2475C512D314EF00576432 /* Foundation */,
+				8C2475CA12D314EF00576432 /* GTMDefines.h */,
+				8C2475CB12D314EF00576432 /* UnitTesting */,
+			);
+			name = "google-toolbox-for-mac";
+			path = "Vendor/google-toolbox-for-mac";
+			sourceTree = "<group>";
+		};
+		8C2475C512D314EF00576432 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				8C2475C612D314EF00576432 /* GTMObjC2Runtime.h */,
+				8C2475C712D314EF00576432 /* GTMObjC2Runtime.m */,
+				8C2475C812D314EF00576432 /* GTMRegex.h */,
+				8C2475C912D314EF00576432 /* GTMRegex.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		8C2475CB12D314EF00576432 /* UnitTesting */ = {
+			isa = PBXGroup;
+			children = (
+				8C2475CC12D314EF00576432 /* GTMIPhoneUnitTestDelegate.h */,
+				8C2475CD12D314EF00576432 /* GTMIPhoneUnitTestDelegate.m */,
+				8C2475CE12D314EF00576432 /* GTMIPhoneUnitTestMain.m */,
+				8C2475CF12D314EF00576432 /* GTMSenTestCase.h */,
+				8C2475D012D314EF00576432 /* GTMSenTestCase.m */,
+				8C2475D112D314EF00576432 /* GTMUnitTestDevLog.h */,
+				8C2475D212D314EF00576432 /* GTMUnitTestDevLog.m */,
+			);
+			path = UnitTesting;
+			sourceTree = "<group>";
+		};
+		8C24760512D3185400576432 /* Expectacular */ = {
+			isa = PBXGroup;
+			children = (
+				8C24760612D3186C00576432 /* Classes */,
+			);
+			name = Expectacular;
+			path = Vendor/Expectacular;
+			sourceTree = "<group>";
+		};
+		8C24760612D3186C00576432 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8C24760712D3186C00576432 /* Expect.h */,
+				8C24760812D3186C00576432 /* Expect.m */,
+				8C24760912D3186C00576432 /* ExpectacularFailure.h */,
+				8C24760A12D3186C00576432 /* ExpectacularFailure.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		C779986B112768AC00B197AE /* Web Socket */ = {
 			isa = PBXGroup;
 			children = (
 				C77999CA1128EE0200B197AE /* ZTWebSocket.h */,
-				C779986D112768BA00B197AE /* ZTWebSocket.m */,
 			);
 			name = "Web Socket";
 			sourceTree = "<group>";
@@ -123,6 +224,8 @@
 		C7CBF6B8113E9D1900546ABF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8C24760512D3185400576432 /* Expectacular */,
+				8C2475C412D314EF00576432 /* google-toolbox-for-mac */,
 				C7CBF6B9113E9D1E00546ABF /* AsyncSocket */,
 			);
 			name = Vendor;
@@ -131,9 +234,10 @@
 		C7CBF6B9113E9D1E00546ABF /* AsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
-				C7CBF676113E9CDE00546ABF /* AsyncSocket.h */,
-				C7CBF6BB113E9D2E00546ABF /* AsyncSocket.m */,
-				C7CBF6BC113E9D2E00546ABF /* AsyncUdpSocket.m */,
+				0EAFE8091275C9EB00119F63 /* ZimtAsyncUdpSocket.h */,
+				0EAFE80A1275C9EB00119F63 /* ZimtAsyncUdpSocket.m */,
+				0EAFE7FF1275C96800119F63 /* ZimtAsyncSocket.h */,
+				0EAFE8001275C96800119F63 /* ZimtAsyncSocket.m */,
 			);
 			name = AsyncSocket;
 			sourceTree = "<group>";
@@ -150,13 +254,32 @@
 				C7BF061211273DE3000F2DF4 /* Zimt.h in Headers */,
 				C7BF0822112750B1000F2DF4 /* ZTFakeLocationManager.h in Headers */,
 				C77999CB1128EE0200B197AE /* ZTWebSocket.h in Headers */,
-				C7CBF677113E9CDE00546ABF /* AsyncSocket.h in Headers */,
+				0EAFE8011275C96800119F63 /* ZimtAsyncSocket.h in Headers */,
+				0EAFE80B1275C9EB00119F63 /* ZimtAsyncUdpSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8C2475D612D3155C00576432 /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C2475DC12D3155C00576432 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				8C2475D312D3155C00576432 /* Resources */,
+				8C2475D412D3155C00576432 /* Sources */,
+				8C2475D512D3155C00576432 /* Frameworks */,
+				8C2475DE12D3157400576432 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Unit Tests";
+			productName = "Unit Tests";
+			productReference = 8C2475D712D3155C00576432 /* Unit Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2AAC07D0554694100DB518D /* Zimt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "Zimt" */;
@@ -184,7 +307,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				en,
+				English,
+				Japanese,
+				French,
+				German,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* Zimt */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
@@ -192,19 +318,61 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* Zimt */,
+				8C2475D612D3155C00576432 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		8C2475D312D3155C00576432 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C2475DE12D3157400576432 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Vendor/google-toolbox-for-mac/UnitTesting/RunIPhoneUnitTest.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		8C2475D412D3155C00576432 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2475E712D315BF00576432 /* GTMIPhoneUnitTestDelegate.m in Sources */,
+				8C2475E812D315C000576432 /* GTMIPhoneUnitTestMain.m in Sources */,
+				8C2475E912D315C000576432 /* GTMObjC2Runtime.m in Sources */,
+				8C2475EA12D315C100576432 /* GTMRegex.m in Sources */,
+				8C2475EB12D315C300576432 /* GTMSenTestCase.m in Sources */,
+				8C2475EC12D315C400576432 /* GTMUnitTestDevLog.m in Sources */,
+				8C24760B12D3186C00576432 /* Expect.m in Sources */,
+				8C24760C12D3186C00576432 /* ExpectacularFailure.m in Sources */,
+				8C24761012D319C800576432 /* WebSocketTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C7BF06A011274609000F2DF4 /* ZTFakeLocationManager.m in Sources */,
-				C779986F112768BA00B197AE /* ZTWebSocket.m in Sources */,
-				C7CBF6BE113E9D2E00546ABF /* AsyncSocket.m in Sources */,
-				C7CBF6BF113E9D2E00546ABF /* AsyncUdpSocket.m in Sources */,
+				0EAFE8021275C96800119F63 /* ZimtAsyncSocket.m in Sources */,
+				0EAFE80C1275C9EB00119F63 /* ZimtAsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,8 +393,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Zimt_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Zimt;
 				SDKROOT = iphoneos;
+
 			};
 			name = Debug;
 		};
@@ -240,8 +413,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Zimt_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = Zimt;
 				SDKROOT = iphoneos;
+
 			};
 			name = Release;
 		};
@@ -252,11 +430,12 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -265,11 +444,61 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		8C2475DA12D3155C00576432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8C2475DB12D3155C00576432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -290,6 +519,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C2475DC12D3155C00576432 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C2475DA12D3155C00576432 /* Debug */,
+				8C2475DB12D3155C00576432 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

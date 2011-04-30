@@ -1,5 +1,5 @@
 //
-//  AsyncUdpSocket.h
+//  ZimtAsyncUdpSocket.h
 //  
 //  This class is in the public domain.
 //  Originally created by Robbie Hanson on Wed Oct 01 2008.
@@ -10,25 +10,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class AsyncSendPacket;
-@class AsyncReceivePacket;
+@class ZimtAsyncSendPacket;
+@class ZimtAsyncReceivePacket;
 
-extern NSString *const AsyncUdpSocketException;
-extern NSString *const AsyncUdpSocketErrorDomain;
+extern NSString *const ZimtAsyncUdpSocketException;
+extern NSString *const ZimtAsyncUdpSocketErrorDomain;
 
-enum AsyncUdpSocketError
+enum ZimtAsyncUdpSocketError
 {
-	AsyncUdpSocketCFSocketError = kCFSocketError,	// From CFSocketError enum
-	AsyncUdpSocketNoError = 0,						// Never used
-	AsyncUdpSocketBadParameter,                     // Used if given a bad parameter (such as an improper address)
-	AsyncUdpSocketIPv4Unavailable,                  // Used if you bind/connect using IPv6 only
-	AsyncUdpSocketIPv6Unavailable,                  // Used if you bind/connect using IPv4 only (or iPhone)
-	AsyncUdpSocketSendTimeoutError,
-	AsyncUdpSocketReceiveTimeoutError
+	ZimtAsyncUdpSocketCFSocketError = kCFSocketError,	// From CFSocketError enum
+	ZimtAsyncUdpSocketNoError = 0,						// Never used
+	ZimtAsyncUdpSocketBadParameter,                     // Used if given a bad parameter (such as an improper address)
+	ZimtAsyncUdpSocketIPv4Unavailable,                  // Used if you bind/connect using IPv6 only
+	ZimtAsyncUdpSocketIPv6Unavailable,                  // Used if you bind/connect using IPv4 only (or iPhone)
+	ZimtAsyncUdpSocketSendTimeoutError,
+	ZimtAsyncUdpSocketReceiveTimeoutError
 };
-typedef enum AsyncUdpSocketError AsyncUdpSocketError;
+typedef enum ZimtAsyncUdpSocketError ZimtAsyncUdpSocketError;
 
-@interface AsyncUdpSocket : NSObject
+@interface ZimtAsyncUdpSocket : NSObject
 {
 	CFSocketRef theSocket4;            // IPv4 socket
 	CFSocketRef theSocket6;            // IPv6 socket
@@ -40,11 +40,11 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 	NSArray *theRunLoopModes;
 	
 	NSMutableArray *theSendQueue;
-	AsyncSendPacket *theCurrentSend;
+	ZimtAsyncSendPacket *theCurrentSend;
 	NSTimer *theSendTimer;
 	
 	NSMutableArray *theReceiveQueue;
-	AsyncReceivePacket *theCurrentReceive;
+	ZimtAsyncReceivePacket *theCurrentReceive;
 	NSTimer *theReceiveTimer;
 	
 	id theDelegate;
@@ -62,14 +62,14 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 }
 
 /**
- * Creates new instances of AsyncUdpSocket.
+ * Creates new instances of ZimtAsyncUdpSocket.
 **/
 - (id)init;
 - (id)initWithDelegate:(id)delegate;
 - (id)initWithDelegate:(id)delegate userData:(long)userData;
 
 /**
- * Creates new instances of AsyncUdpSocket that support only IPv4 or IPv6.
+ * Creates new instances of ZimtAsyncUdpSocket that support only IPv4 or IPv6.
  * The other init methods will support both, unless specifically binded or connected to one protocol.
  * If you know you'll only be using one protocol, these init methods may be a bit more efficient.
 **/
@@ -197,7 +197,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (BOOL)enableBroadcast:(BOOL)flag error:(NSError **)errPtr;
 
 /**
- * Asynchronously sends the given data, with the given timeout and tag.
+ * ZimtAsynchronously sends the given data, with the given timeout and tag.
  * 
  * This method may only be used with a connected socket.
  * 
@@ -207,7 +207,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (BOOL)sendData:(NSData *)data withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Asynchronously sends the given data, with the given timeout and tag, to the given host and port.
+ * ZimtAsynchronously sends the given data, with the given timeout and tag, to the given host and port.
  * 
  * This method cannot be used with a connected socket.
  * 
@@ -218,7 +218,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (BOOL)sendData:(NSData *)data toHost:(NSString *)host port:(UInt16)port withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Asynchronously sends the given data, with the given timeout and tag, to the given address.
+ * ZimtAsynchronously sends the given data, with the given timeout and tag, to the given address.
  * 
  * This method cannot be used with a connected socket.
  * 
@@ -228,7 +228,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (BOOL)sendData:(NSData *)data toAddress:(NSData *)remoteAddr withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Asynchronously receives a single datagram packet.
+ * ZimtAsynchronously receives a single datagram packet.
  * 
  * If the receive succeeds, the onUdpSocket:didReceiveData:fromHost:port:tag delegate method will be called.
  * Otherwise, a timeout will occur, and the onUdpSocket:didNotReceiveDataWithTag: delegate method will be called.
@@ -281,7 +281,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (void)setMaxReceiveBufferSize:(UInt32)max;
 
 /**
- * When you create an AsyncUdpSocket, it is added to the runloop of the current thread.
+ * When you create an ZimtAsyncUdpSocket, it is added to the runloop of the current thread.
  * So it is easiest to simply create the socket on the thread you intend to use it.
  * 
  * If, however, you need to move the socket to a separate thread at a later time, this
@@ -306,7 +306,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 - (BOOL)setRunLoopModes:(NSArray *)runLoopModes;
 
 /**
- * Returns the current run loop modes the AsyncSocket instance is operating in.
+ * Returns the current run loop modes the ZimtAsyncSocket instance is operating in.
  * The default set of run loop modes is NSDefaultRunLoopMode.
 **/
 - (NSArray *)runLoopModes;
@@ -317,18 +317,18 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface NSObject (AsyncUdpSocketDelegate)
+@interface NSObject (ZimtAsyncUdpSocketDelegate)
 
 /**
  * Called when the datagram with the given tag has been sent.
 **/
-- (void)onUdpSocket:(AsyncUdpSocket *)sock didSendDataWithTag:(long)tag;
+- (void)onUdpSocket:(ZimtAsyncUdpSocket *)sock didSendDataWithTag:(long)tag;
 
 /**
  * Called if an error occurs while trying to send a datagram.
  * This could be due to a timeout, or something more serious such as the data being too large to fit in a sigle packet.
 **/
-- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error;
+- (void)onUdpSocket:(ZimtAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error;
 
 /**
  * Called when the socket has received the requested datagram.
@@ -339,7 +339,7 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
  * It's important these packets are properly ignored, while not interfering with the flow of your implementation.
  * As an aid, this delegate method has a boolean return value.
  * If you ever need to ignore a received packet, simply return NO,
- * and AsyncUdpSocket will continue as if the packet never arrived.
+ * and ZimtAsyncUdpSocket will continue as if the packet never arrived.
  * That is, the original receive request will still be queued, and will still timeout as usual if a timeout was set.
  * For example, say you requested to receive data, and you set a timeout of 500 milliseconds, using a tag of 15.
  * If rogue data arrives after 250 milliseconds, this delegate method would be invoked, and you could simply return NO.
@@ -348,18 +348,18 @@ typedef enum AsyncUdpSocketError AsyncUdpSocketError;
  * 
  * Under normal circumstances, you simply return YES from this method.
 **/
-- (BOOL)onUdpSocket:(AsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port;
+- (BOOL)onUdpSocket:(ZimtAsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port;
 
 /**
  * Called if an error occurs while trying to receive a requested datagram.
  * This is generally due to a timeout, but could potentially be something else if some kind of OS error occurred.
 **/
-- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotReceiveDataWithTag:(long)tag dueToError:(NSError *)error;
+- (void)onUdpSocket:(ZimtAsyncUdpSocket *)sock didNotReceiveDataWithTag:(long)tag dueToError:(NSError *)error;
 
 /**
  * Called when the socket is closed.
  * A socket is only closed if you explicitly call one of the close methods.
 **/
-- (void)onUdpSocketDidClose:(AsyncUdpSocket *)sock;
+- (void)onUdpSocketDidClose:(ZimtAsyncUdpSocket *)sock;
 
 @end
