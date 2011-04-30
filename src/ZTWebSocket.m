@@ -130,7 +130,9 @@ enum {
                                                        "Origin: %@\r\n"
                                                        "\r\n",
                                                         requestPath,url.host,requestOrigin];
+    
     [socket writeData:[getRequest dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:ZTWebSocketTagHandshake];
+    
 }
 
 -(void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
