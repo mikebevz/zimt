@@ -19,7 +19,7 @@
 }
 
 -(void)viewDidLoad {
-    webSocket = [[ZTWebSocket alloc] initWithURLString:@"ws://10.0.1.21:12345/" delegate:self];
+    webSocket = [[ZTWebSocket alloc] initWithURLString:@"ws://echo.websocket.org/ws" delegate:self];
     [webSocket open];	
     [textField becomeFirstResponder];
 }
@@ -46,7 +46,7 @@
 
 -(void)webSocketDidOpen:(ZTWebSocket *)aWebSocket {
     [self write:@"Connected"];
-    reconnectButton.hidden = YES;
+    reconnectButton.hidden = NO;
 }
 
 -(void)webSocketDidSendMessage:(ZTWebSocket *)webSocket {
@@ -71,6 +71,10 @@
 -(IBAction)reconnect:(id)sender {
     if (!webSocket.connected) {
         [webSocket open];
+    }
+    else
+    {
+        [webSocket close];
     }
 }
 

@@ -16,7 +16,8 @@ NSString* const ZTWebSocketException = @"ZTWebSocketException";
 
 enum {
     ZTWebSocketTagHandshake = 0,
-    ZTWebSocketTagMessage = 1
+    ZTWebSocketTagMessage = 1,
+    ZTWebSocketTagChallenge = 2
 };
 
 // Private methods & properties
@@ -50,9 +51,27 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
         if (![url.scheme hasPrefix:@"ws"]) {
             [NSException raise:ZTWebSocketException format:@"Unsupported protocol %@", url.scheme];
         }
-        socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
+        
+        if (useVoIP)
+        {
+            socket = [[ZimtAsyncSocket alloc] initAsVoIPWithDelegate:self];
+        }
+        else
+        {
+            socket = [[ZimtAsyncSocket alloc] initWithDelegate:self];
+        }
         self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil];
+        self.origin = @"http://localhost";
     }
+    return self;
+}
+
+- (id)initVoIPWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)aDelegate
+{
+    useVoIP = YES;
+    
+    [self initWithURLString:urlString delegate:aDelegate];
+    
     return self;
 }
 
@@ -94,15 +113,23 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
     [socket readDataToData:[NSData dataWithBytes:"\xFF" length:1] withTimeout:-1 tag:ZTWebSocketTagMessage];
 }
 
+-(void)_readChallenge:(CFIndex)length {
+    [socket readDataToLength:length withTimeout:-1 tag:ZTWebSocketTagChallenge];
+}
+
 #pragma mark Public interface
 
 -(void)close {
-    [socket disconnectAfterReadingAndWriting];
+    [socket disconnect];
 }
 
 -(void)open {
     if (!connected) {
-        [socket connectToHost:url.host onPort:[url.port intValue] withTimeout:5 error:nil];
+        int port = [url.port intValue];
+        if (port == 0) {
+            port = 80;
+        }
+        [socket connectToHost:url.host onPort:port withTimeout:5 error:nil];
         if (runLoopModes) [socket setRunLoopModes:runLoopModes];
     }
 }
@@ -119,6 +146,7 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
 
 -(void)onSocketDidDisconnect:(ZimtAsyncSocket *)sock {
     connected = NO;
+    [self _dispatchClosed];
 }
 
 -(void)onSocket:(ZimtAsyncSocket *)sock willDisconnectWithError:(NSError *)err {
@@ -192,12 +220,19 @@ static const NSString* randomCharacterInSecWebSocketKey = @"!\"#$%&'()*+,-./:;<=
     if (tag == ZTWebSocketTagHandshake) {
         NSString* response = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
         
-        if ([response hasPrefix:@"HTTP/1.1 101 WebSocket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
-            [self setHandShakeHeaderReceived:YES];
-            [self _readNextMessage];
+        if ([response hasPrefix:@"HTTP/1.1 101 Web Socket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
+            [self _readChallenge:[expectedChallenge length]];
         } else {
             [self _dispatchFailure:[NSNumber numberWithInt:ZTWebSocketErrorHandshakeFailed]];
         }
+    } else if (tag == ZTWebSocketTagChallenge) {
+        if ([expectedChallenge isEqualToData:data]) { // got our challenge!
+                connected = YES;
+                [self _dispatchOpened];
+            } else {
+                [self _dispatchFailure:[NSNumber numberWithInt:ZTWebSocketErrorHandshakeFailed]];
+            }
+        [self _readNextMessage];
     } else if (tag == ZTWebSocketTagMessage) {
         char firstByte = 0xFF;
         [data getBytes:&firstByte length:1];

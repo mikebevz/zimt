@@ -176,13 +176,21 @@ typedef enum ZimtAsyncSocketError ZimtAsyncSocketError;
 
 	id theDelegate;
 	UInt16 theFlags;
+    
+    BOOL    useVoIP;
 	
 	long theUserData;
 }
 
 - (id)init;
 - (id)initWithDelegate:(id)delegate;
+- (id)initAsVoIPWithDelegate:(id)delgate;
 - (id)initWithDelegate:(id)delegate userData:(long)userData;
+
+/**
+ * Instructs the streams to run as VoIP-type streams.
+**/
+- (void) setStreamsAsVoIP;
 
 /* String representation is long but has no "\n". */
 - (NSString *)description;

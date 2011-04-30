@@ -400,6 +400,14 @@ static void MyCFWriteStreamCallback(CFWriteStreamRef stream, CFStreamEventType t
 	return [self initWithDelegate:delegate userData:0];
 }
 
+- (id)initAsVoIPWithDelegate:(id)delegate
+{
+    NSLog(@"****** initAsVoIPWithDelegate");
+    useVoIP = YES;
+	return [self initWithDelegate:delegate userData:0];
+}
+
+
 // Designated initializer.
 - (id)initWithDelegate:(id)delegate userData:(long)userData
 {
@@ -1355,6 +1363,13 @@ Failed:
 	// Ensure the CF & BSD socket is closed when the streams are closed.
 	CFReadStreamSetProperty(theReadStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
 	CFWriteStreamSetProperty(theWriteStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
+    
+    if (useVoIP)
+    {
+        NSLog(@"***** USING VoIP SERVICE *****");
+        CFReadStreamSetProperty(theReadStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+        CFWriteStreamSetProperty(theWriteStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+    }
 
 	return YES;
 }
@@ -3049,7 +3064,7 @@ Failed:
 			[self doAcceptWithSocket: *((CFSocketNativeHandle *)pData)];
 			break;
 		default:
-			NSLog (@"ZimtAsyncSocket %p received unexpected CFSocketCallBackType %d.", self, type);
+			NSLog (@"ZimtAsyncSocket %p received unexpected CFSocketCallBackType %lu.", self, type);
 			break;
 	}
 }
@@ -3080,7 +3095,7 @@ Failed:
 			[self closeWithError: [self errorFromCFStreamError:err]];
 			break;
 		default:
-			NSLog (@"ZimtAsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %d.", self, type);
+			NSLog (@"ZimtAsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %lu.", self, type);
 	}
 }
 
@@ -3110,7 +3125,7 @@ Failed:
 			[self closeWithError: [self errorFromCFStreamError:err]];
 			break;
 		default:
-			NSLog (@"ZimtAsyncSocket %p received unexpected CFWriteStream callback, CFStreamEventType %d.", self, type);
+			NSLog (@"ZimtAsyncSocket %p received unexpected CFWriteStream callback, CFStreamEventType %lu.", self, type);
 	}
 }
 

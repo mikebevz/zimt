@@ -32,7 +32,8 @@
 
     u_char key3[8];
     NSData* expectedChallenge;
-    BOOL handShakeHeaderReceived;
+    
+    BOOL    useVoIP;
 }
 
 @property(nonatomic,assign) id<ZTWebSocketDelegate> delegate;
@@ -44,6 +45,8 @@
 
 + (id)webSocketWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)delegate;
 - (id)initWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)delegate;
+
+- (id)initVoIPWithURLString:(NSString*)urlString delegate:(id<ZTWebSocketDelegate>)delegate;
 
 - (void)open;
 - (void)close;

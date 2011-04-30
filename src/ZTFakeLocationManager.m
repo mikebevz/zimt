@@ -9,7 +9,7 @@
 @implementation ZTFakeLocationManager
 
 -(id)initWithWaypoints:(NSArray*)waypoints {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		NSAssert([waypoints count] > 0, @"Tried creating ZTFakeLocationManager with no waypoints");
         
         _currentWaypoint = 0;
